@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface QuizService {
 
-    List<Question> getAllQuestions();
+    List<Question> getQuestionsForUser(String username);
 
     Question saveQuestion(Question question);
 

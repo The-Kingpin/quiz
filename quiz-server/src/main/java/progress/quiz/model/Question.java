@@ -14,10 +14,14 @@ public class Question {
 
     private String category;
 
-    private String description;
+    @OneToMany
+    @JoinColumn(name = "question_id")
+    private List<User> user = new ArrayList<>();
+
+    private String questionText;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "question_id")
+    @JoinTable(name = "question_id")
     private List<Answer> answer = new ArrayList<>();
 
     public long getId() {
@@ -37,12 +41,12 @@ public class Question {
         this.category = category;
     }
 
-    public String getDescription() {
-        return description;
+    public String getQuestionText() {
+        return questionText;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setQuestionText(String questionText) {
+        this.questionText = questionText;
     }
 
     public List<Answer> getAnswer() {
@@ -58,11 +62,11 @@ public class Question {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Question question = (Question) o;
-        return id == question.id && Objects.equals(description, question.description) && Objects.equals(answer, question.answer) && Objects.equals(category, question.category);
+        return id == question.id && Objects.equals(questionText, question.questionText) && Objects.equals(answer, question.answer) && Objects.equals(category, question.category);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, description, answer, category);
+        return Objects.hash(id, questionText, answer, category);
     }
 }
