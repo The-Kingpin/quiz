@@ -22,7 +22,6 @@ public class UserController {
     @PostMapping
     public User loginUser(@RequestBody User user) {
         System.out.println("Logged in: " + user.getUsername());
-        User userFound = this.userService.findUserByUsername(user.getUsername());
-        return userFound;
+        return this.userService.findUserByUsername(user.getUsername());
     }
 }

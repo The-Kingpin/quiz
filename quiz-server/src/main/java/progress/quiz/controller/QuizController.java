@@ -37,6 +37,7 @@ public class QuizController {
         return this.quizService.getQuestionsForUser(username);
     }
 
+    @CrossOrigin
     @PostMapping
     public ResponseEntity<HttpStatus> createQuestions(@RequestBody List<Question> questions) {
         System.out.println("CREATE QUESTION");
@@ -52,6 +53,7 @@ public class QuizController {
         }
     }
 
+    @CrossOrigin
     @GetMapping("/get-by-id")
     public Question getQuestionById(long id) throws Exception {
         System.out.println("GET-BY-ID: " + id);
